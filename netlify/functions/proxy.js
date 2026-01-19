@@ -1,17 +1,26 @@
-export async function handler(event) {
-  const url = "https://metaforge.app/api/arc-raiders/events-schedule";
+export async function handler() {
+  try {
+    const response = await fetch(
+      'https://metaforge.app/api/arc-raiders/events-schedule'
+    );
 
-  const response = await fetch(url);
-  const data = await response.json();
+    const data = await response.json();
 
-  return {
-    statusCode: 200,
-    headers: {
+    return {
+      statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Cache-Control": "public, max-age=300",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       },
-    },
-    body: JSON.stringify(data),
-  };
+      body: JSON.stringify(data),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ error: "Proxy failed" }),
+    };
+  }
 }
