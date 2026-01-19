@@ -14,3 +14,4 @@ export async function fetchEvents() {
     return { data: [] } as { data: Datum[] };
   }
 }
+

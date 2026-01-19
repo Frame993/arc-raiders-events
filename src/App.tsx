@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-8">Arc Raiders Events</h1>
+      <h1 className="text-2xl font-bold mb-4">Arc Raiders Events</h1>
 
       <section className="mb-8">
         <h2 className="text-xl mb-4">🟢 Activos</h2>
