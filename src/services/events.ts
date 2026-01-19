@@ -1,17 +1,22 @@
 import type { Datum } from "../types/event";
 
-export async function fetchEvents() {
+const API_URL = import.meta.env.DEV
+  ? `${import.meta.env.VITE_API_BASE}/api/arc-raiders/events-schedule`
+  : import.meta.env.VITE_NETLIFY_FUNCTION;
+
+export async function fetchEvents(): Promise<{ data: Datum[] }> {
   try {
-    const response = await fetch(import.meta.env.VITE_EVENTS_URL);
+    const response = await fetch(API_URL);
+
     if (!response.ok) {
-      throw new Error(`Error fetching events: ${response.statusText}`);
+      throw new Error(`Error fetching events: ${response.status} ${response.statusText}`);
     }
+
     const data = await response.json();
-    // console.log("Fetched events:", data);
+
     return data as { data: Datum[] };
   } catch (error) {
     console.error("Failed to fetch events:", error);
-    return { data: [] } as { data: Datum[] };
+    return { data: [] };
   }
 }
-

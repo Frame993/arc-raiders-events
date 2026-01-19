@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCountdown } from "../hooks/useCountdown";
 import type { Datum } from "../types/event";
 import { scheduleNotification } from "../utils/notifications";
